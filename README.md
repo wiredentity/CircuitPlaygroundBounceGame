@@ -13,7 +13,7 @@ This continues until you fail, in which the board flashs, beeps, and resets to t
 ## Inputs
 
 Uses buttons on pin 4 and 19
-(planned mic sensor)
+- (planned mic sensor)
 
 ## Outputs
 
@@ -27,8 +27,10 @@ If I get super fancy -> can only use freeze once per level
 ## Updated 6/4/24
 
 first working demo
+### To be added
 -need to fix debounce for double success/faliures
 -flash entire board not just two lights
 -use both buttons?
 -consider maybe slide switch adds a second game rather than using freeze mechanic?
 -if you reach highest possible speed maybe reward with animation and victory sound -> reset
+-sounds from speech library
