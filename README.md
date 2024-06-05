@@ -23,3 +23,12 @@ Planned addition of a freeze mechanic, which slows the light and turns it blue f
 The time this powerup is active scales with current speed.
 
 If I get super fancy -> can only use freeze once per level
+
+## Updated 6/4/24
+
+first working demo
+-need to fix debounce for double success/faliures
+-flash entire board not just two lights
+-use both buttons?
+-consider maybe slide switch adds a second game rather than using freeze mechanic?
+-if you reach highest possible speed maybe reward with animation and victory sound -> reset
