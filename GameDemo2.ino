@@ -4,21 +4,16 @@
 #define BUTTON_PIN 4
 #define MIDDLE_POSITION1 4
 #define MIDDLE_POSITION2 5
-#define NUM_PIXELS 10
-#define LED_PIN 13 // Using the built-in LED for feedback
 
 int lightPosition = 0;
 int speed = 200;  // Initial speed (milliseconds between each position change)
 bool movingForward = true;
 volatile bool buttonPressed = false;
-unsigned long lastButtonPressTime = 0;
-const unsigned long debounceDelay = 50; // Debounce delay in milliseconds
 
 AsyncDelay lightDelay;
 
 void setup() {
   CircuitPlayground.begin();
-  pinMode(LED_PIN, OUTPUT);
   attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), handleButtonPress, RISING);
   CircuitPlayground.clearPixels();
   Serial.begin(9600);
@@ -48,7 +43,7 @@ void updateLightPosition() {
 
   if (movingForward) {
     lightPosition++;
-    if (lightPosition >= NUM_PIXELS - 1) {
+    if (lightPosition >= 9) {
       movingForward = false;
     }
   } else {
@@ -82,8 +77,7 @@ void handleButtonPressLogic() {
 
 void playSuccessSequence() {
   for (int i = 0; i < 3; i++) {
-    CircuitPlayground.setPixelColor(MIDDLE_POSITION1, 255, 255, 255); // White flash
-    CircuitPlayground.setPixelColor(MIDDLE_POSITION2, 255, 255, 255); // White flash
+    allOn(0xFFFFFF);
     delay(100);
     CircuitPlayground.clearPixels();
     delay(100);
@@ -93,8 +87,7 @@ void playSuccessSequence() {
 
 void playFailSequence() {
   for (int i = 0; i < 3; i++) {
-    CircuitPlayground.setPixelColor(MIDDLE_POSITION1, 255, 0, 0); // Red flash
-    CircuitPlayground.setPixelColor(MIDDLE_POSITION2, 255, 0, 0); // Red flash
+    allOn(0xFF0000);
     delay(100);
     CircuitPlayground.clearPixels();
     delay(100);
@@ -103,9 +96,14 @@ void playFailSequence() {
 }
 
 void handleButtonPress() {
-  unsigned long currentTime = millis();
-  if (currentTime - lastButtonPressTime > debounceDelay) {
-    buttonPressed = true;
-    lastButtonPressTime = currentTime;
-  }
+  delay (100);
+  buttonPressed = true;
 }
+
+
+void allOn(int color){
+for (int i = 0; i < 10; i++) {
+CircuitPlayground.setPixelColor(i, color);
+}
+}
+
