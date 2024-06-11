@@ -12,11 +12,8 @@ This continues until you fail, in which the board alerts you of faliure and all 
 
 ## Inputs
 
-Uses button on pin 4
-Uses slide switch
+Uses button on pin 4, and uses slide switch
 
 ## Outputs
-Neopixel lights
-Speech library
-Plays tones
+Neopixel lights, speech library, plays tones
 
